@@ -1,12 +1,34 @@
-// The main file for project
-import { readFromFile } from './src/utils/index.js';
+import { getConfigs, parseJsonFileFromParam } from './src/utils/index.js';
+import { TRANSACTION_TYPES } from './src/constants/index.js';
+import { cashInTransaction } from './src/CashIn.js';
+import { cashOutTransaction } from './src/CashOut.js';
 
-function calcCommission() {
-  const nodePath = process.argv[2] ?? 'input.json';
-  const inputFileJSON = readFromFile(nodePath);
-  const inputFile = JSON.parse(inputFileJSON);
-  const amountArray = inputFile.map(({ operation }) => operation.amount);
-  console.log(amountArray);
+async function calcCommission() {
+  const {
+    cashInConfig,
+    cashOutJuridicalConfig,
+    cashOutNaturalConfig,
+  } = await getConfigs();
+  const transactions = parseJsonFileFromParam();
+  transactions.forEach((transaction) => {
+    if (transaction.type === TRANSACTION_TYPES.cash_in) {
+      const commissionFee = cashInTransaction(transaction, cashInConfig);
+      console.log(commissionFee);
+      return;
+    }
+
+    if (transaction.type === TRANSACTION_TYPES.cash_out) {
+      const commissionFee = cashOutTransaction(
+        transaction,
+        cashOutJuridicalConfig,
+        cashOutNaturalConfig,
+      );
+      console.log(commissionFee);
+      return;
+    }
+
+    console.log('Unknown transaction');
+  });
 }
 
 calcCommission();

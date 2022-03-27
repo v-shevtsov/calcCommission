@@ -4,6 +4,7 @@ module.exports = {
     browser: false,
     commonjs: true,
     es2021: true,
+    jest: true
   },
   extends: [
     'airbnb-base',
