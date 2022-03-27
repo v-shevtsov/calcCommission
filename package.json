@@ -1,0 +1,19 @@
+{
+  "name": "calcommission",
+  "version": "1.0.0",
+  "description": "Calculate commission rate",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "start": "node app.js"
+  },
+  "author": "Vitalii Shevtsov",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1"
+  }
+}
