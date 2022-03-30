@@ -1,16 +1,8 @@
-import fetch from 'node-fetch';
-import { CONFIGS_URL } from '../../constants/index.js';
+import { fetchBuilder, MemoryCache } from 'node-fetch-cache';
+
+export const fetch = fetchBuilder.withCache(new MemoryCache({ ttl: 1000 }));
 
 export const fetchJSON = async (url, options = {}) => {
   const response = await fetch(url, options);
   return response.json();
-};
-
-export const getConfigs = async () => {
-  const configs = {};
-  const configKeys = Object.keys(CONFIGS_URL);
-  await Promise.all(configKeys.map(async (key) => {
-    configs[key] = await fetchJSON(CONFIGS_URL[key]);
-  }));
-  return configs;
 };

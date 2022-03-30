@@ -1,5 +1,6 @@
-import { CURRENCIES_SUPPORTED, UNSUPPORTED_CURRENCY_ERROR } from './constants/index.js';
-import { getCommission, getRoundedAmount } from './utils/index.js';
+import { getCommission, getRoundedAmount } from '../utils/math/index.js';
+import { CURRENCIES_SUPPORTED } from '../constants/types.js';
+import { UNSUPPORTED_CURRENCY_ERROR } from '../constants/errors.js';
 
 export const getCommissionFeeByConfig = (operation, config) => {
   const { amount, currency } = operation;

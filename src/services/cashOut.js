@@ -1,8 +1,8 @@
-import { COMMISSION_TYPE, UNKNOWN_OPERATION_TYPE, USER_TYPES } from './constants/index.js';
-import { getCommissionFeeByConfig } from './CommissionFeeByConfig.js';
-import { isTheSameWeek } from './utils/index.js';
-
-const transactionMap = new Map();
+import { getCommissionFeeByConfig } from './commissionFeeByConfig.js';
+import { isTheSameWeek } from '../utils/date/index.js';
+import { COMMISSION_TYPE, USER_TYPES } from '../constants/types.js';
+import { UNKNOWN_OPERATION_TYPE } from '../constants/errors.js';
+import { NUMBERS_AFTER_POINT } from '../constants/constants.js';
 
 const cashOutJuridical = ({ operation }, config) => {
   const commissionFee = getCommissionFeeByConfig(
@@ -11,12 +11,13 @@ const cashOutJuridical = ({ operation }, config) => {
   );
 
   return commissionFee < config[COMMISSION_TYPE.min].amount
-    ? config[COMMISSION_TYPE.min].amount.toFixed(2)
+    ? config[COMMISSION_TYPE.min].amount.toFixed(NUMBERS_AFTER_POINT)
     : commissionFee;
 };
 
-const cashOutNatural = (transaction, config) => {
-  const userTransactions = transactionMap.get(transaction.user_id) ?? [];
+const cashOutNatural = (transactions, config) => {
+  const { transaction, transactionsMap } = transactions;
+  const userTransactions = transactionsMap.get(transaction.user_id) ?? [];
   let commissionFee;
 
   if (transaction.operation.amount > config.week_limit.amount) {
@@ -42,20 +43,19 @@ const cashOutNatural = (transaction, config) => {
     }
   }
 
-  transactionMap.set(transaction.user_id, [...userTransactions, transaction]);
+  transactionsMap.set(transaction.user_id, [...userTransactions, transaction]);
   return commissionFee;
 };
 
 export const cashOutTransaction = (
-  transaction,
-  cashOutJuridicalConfig,
-  cashOutNaturalConfig,
+  transactions,
+  configs,
 ) => {
-  switch (transaction.user_type) {
+  switch (transactions.transaction.user_type) {
     case USER_TYPES.juridical:
-      return cashOutJuridical(transaction, cashOutJuridicalConfig);
+      return cashOutJuridical(transactions.transaction, configs.juridicalConfig);
     case USER_TYPES.natural:
-      return cashOutNatural(transaction, cashOutNaturalConfig);
+      return cashOutNatural(transactions, configs.naturalConfig);
     default:
       return UNKNOWN_OPERATION_TYPE;
   }
