@@ -4,7 +4,7 @@ import { COMMISSION_TYPE, USER_TYPES } from '../constants/types.js';
 import { UNKNOWN_OPERATION_TYPE } from '../constants/errors.js';
 import { NUMBERS_AFTER_POINT } from '../constants/constants.js';
 
-const cashOutJuridical = ({ operation }, config) => {
+export const cashOutJuridical = ({ operation }, config) => {
   const commissionFee = getCommissionFeeByConfig(
     operation,
     config,
@@ -15,7 +15,7 @@ const cashOutJuridical = ({ operation }, config) => {
     : commissionFee;
 };
 
-const cashOutNatural = (transactions, config) => {
+export const cashOutNatural = (transactions, config) => {
   const { transaction, transactionsMap } = transactions;
   const userTransactions = transactionsMap.get(transaction.user_id) ?? [];
   let commissionFee;

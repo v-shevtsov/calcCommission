@@ -1,3 +1,3 @@
-import { calcCommission } from './src/services/calcCommission.js';
+import { calcCommission } from './src/calcCommission.js';
 
 calcCommission();

@@ -1,9 +1,9 @@
-import { parseJsonFileFromParam } from '../utils/files/index.js';
-import { TRANSACTION_TYPES } from '../constants/types.js';
-import { cashInTransaction } from './cashIn.js';
-import { cashOutTransaction } from './cashOut.js';
-import { getConfigs } from '../utils/configs/index.js';
-import { UNKNOWN_TRANSACTION } from '../constants/errors.js';
+import { parseJsonFileFromParam } from './utils/files/index.js';
+import { TRANSACTION_TYPES } from './constants/types.js';
+import { cashInTransaction } from './services/cashIn.js';
+import { cashOutTransaction } from './services/cashOut.js';
+import { getConfigs } from './utils/configs/index.js';
+import { UNKNOWN_TRANSACTION } from './constants/errors.js';
 
 export async function calcCommission() {
   const {
