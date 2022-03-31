@@ -1,6 +1,6 @@
-import { getCommissionFeeByConfig } from './commissionFeeByConfig.js';
-import { COMMISSION_TYPE } from '../constants/types.js';
-import { NUMBERS_AFTER_POINT } from '../constants/constants.js';
+import { getCommissionFeeByConfig } from '../commissionFeeByConfig/commissionFeeByConfig.js';
+import { COMMISSION_TYPE } from '../../constants/types.js';
+import { NUMBERS_AFTER_POINT } from '../../constants/constants.js';
 
 export const cashInTransaction = ({ operation }, config) => {
   const commissionFee = getCommissionFeeByConfig(

@@ -1,8 +1,9 @@
-jest.mock('node-fetch-cache');
 const fetchMock = require('node-fetch-cache');
 const { fetchJSON } = require('./index.js');
 
-const mockJSON = '[{ "date": "2016-01-05" }]';
+jest.mock('node-fetch-cache');
+
+const mockJSON = '{"percents":0.03,"max":{"amount":5,"currency":"EUR"}}';
 
 describe('fetchJSON', () => {
   it('should return mockJSON', async () => {

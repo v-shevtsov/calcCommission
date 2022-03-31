@@ -1,5 +1,5 @@
-import { CONFIGS_URL } from '../../constants/configs.js';
-import { fetchJSON } from '../http/index.js';
+import { CONFIGS_URL } from '../constants/configs.js';
+import { fetchJSON } from '../utils/http/index.js';
 
 const getConfig = async (configKey) => fetchJSON(CONFIGS_URL[configKey]);
 

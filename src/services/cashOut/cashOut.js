@@ -1,8 +1,8 @@
-import { getCommissionFeeByConfig } from './commissionFeeByConfig.js';
-import { isTheSameWeek } from '../utils/date/index.js';
-import { COMMISSION_TYPE, USER_TYPES } from '../constants/types.js';
-import { UNKNOWN_OPERATION_TYPE } from '../constants/errors.js';
-import { NUMBERS_AFTER_POINT } from '../constants/constants.js';
+import { getCommissionFeeByConfig } from '../commissionFeeByConfig/commissionFeeByConfig.js';
+import { isTheSameWeek } from '../../utils/date/index.js';
+import { COMMISSION_TYPE, USER_TYPES } from '../../constants/types.js';
+import { UNKNOWN_OPERATION_TYPE } from '../../constants/errors.js';
+import { NUMBERS_AFTER_POINT } from '../../constants/constants.js';
 
 export const cashOutJuridical = ({ operation }, config) => {
   const commissionFee = getCommissionFeeByConfig(

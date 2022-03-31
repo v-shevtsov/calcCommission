@@ -1,8 +1,8 @@
 import { parseJsonFileFromParam } from './utils/files/index.js';
 import { TRANSACTION_TYPES } from './constants/types.js';
-import { cashInTransaction } from './services/cashIn.js';
-import { cashOutTransaction } from './services/cashOut.js';
-import { getConfigs } from './utils/configs/index.js';
+import { cashInTransaction } from './services/cashIn/cashIn.js';
+import { cashOutTransaction } from './services/cashOut/cashOut.js';
+import { getConfigs } from './api/index.js';
 import { UNKNOWN_TRANSACTION } from './constants/errors.js';
 
 export async function calcCommission() {
@@ -12,7 +12,7 @@ export async function calcCommission() {
     cashOutNaturalConfig,
   } = await getConfigs();
 
-  const transactionsMap = new Map();
+  const transactionsStore = new Map();
 
   const transactionsList = parseJsonFileFromParam();
   transactionsList.forEach((transaction) => {
@@ -23,7 +23,7 @@ export async function calcCommission() {
     }
 
     if (transaction.type === TRANSACTION_TYPES.cash_out) {
-      const transactions = { transaction, transactionsMap };
+      const transactions = { transaction, transactionsMap: transactionsStore };
       const configs = {
         juridicalConfig: cashOutJuridicalConfig,
         naturalConfig: cashOutNaturalConfig,
