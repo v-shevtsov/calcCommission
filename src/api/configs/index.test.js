@@ -1,6 +1,6 @@
 const fetchMock = require('node-fetch-cache');
 const { getConfig, getConfigs } = require('./index.js');
-const { CONFIGS_URL } = require('../constants/configs.js');
+const { CONFIGS_URL } = require('../../constants/configs.js');
 
 jest.mock('node-fetch-cache');
 
@@ -21,9 +21,7 @@ describe('getConfig', () => {
     const config = await getConfig('cashInConfig');
     expect(config).toBe(mockConfig);
   });
-});
 
-describe('getConfigs', () => {
   it('should return configs array with the same length of CONFIGS_URL', async () => {
     const generalConfigKeys = Object.keys(CONFIGS_URL);
     const configs = await getConfigs();

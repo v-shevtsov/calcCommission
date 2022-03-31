@@ -26,8 +26,11 @@ describe('calcCommission', () => {
   }));
   const logSpy = jest.spyOn(console, 'log');
 
-  it('should called console.log 9 times', async () => {
+  beforeAll(async () => {
     await calcCommission();
+  });
+
+  it('should called console.log 9 times', async () => {
     expect(logSpy).toHaveBeenCalledTimes(9);
   });
 

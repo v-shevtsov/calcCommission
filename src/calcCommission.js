@@ -2,7 +2,7 @@ import { parseJsonFileFromParam } from './utils/files/index.js';
 import { TRANSACTION_TYPES } from './constants/types.js';
 import { cashInTransaction } from './services/cashIn/cashIn.js';
 import { cashOutTransaction } from './services/cashOut/cashOut.js';
-import { getConfigs } from './api/index.js';
+import { getConfigs } from './api/configs/index.js';
 import { UNKNOWN_TRANSACTION } from './constants/errors.js';
 
 export async function calcCommission() {

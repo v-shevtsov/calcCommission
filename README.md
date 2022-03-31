@@ -1,6 +1,6 @@
 # calcCommission
 
-### Before start
+### Commands
 
 ```sh
 npm i
@@ -26,10 +26,14 @@ npm run test
 
 ## Folders
 
-| Folder           | Value                                   |
-|------------------|-----------------------------------------|
-| constants        | Static values for the project                                        |
-| utils            |  Utilities that perform basic logic (divided into subfolders)       |
+| Folder    | Value                                                        |
+|-----------|--------------------------------------------------------------|
+| __mocks__ | Data for testing mock's functions                            |
+| api       | Functions for working with fetch and getting configurations  |
+| constants | Static values for the project                                |
+| services  | Services for working with cashIn and cashOut operations      |
+| utils     | Utilities that perform basic logic (divided into subfolders) |
+
 
 
 ## Components

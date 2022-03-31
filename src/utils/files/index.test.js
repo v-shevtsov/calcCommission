@@ -45,7 +45,7 @@ describe('parseJsonFileFromParam', () => {
   });
 
   it('should return inputTest.json value', () => {
-    process.argv = ['node', 'app', './src/utils/files/inputTest.json'];
+    process.argv = ['node', 'app', './src/__mocks__/inputTest.json'];
     expect(parseJsonFileFromParam()).toEqual(mockInputTest);
   });
 
