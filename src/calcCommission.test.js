@@ -31,7 +31,7 @@ describe('calcCommission', () => {
     expect(logSpy).toHaveBeenCalledTimes(9);
   });
 
-  it('should be called with an order of 0.06, 5.00, 8.70, 0.30, 0.03, 0.03, 5.00, 0.00, 0.00', async () => {
+  it('should be called with an order of 0.06, 5.00, 8.70, 0.30, 0.03, 0.03, 5.00, 0.00, 0.00', () => {
     expect(logSpy).toHaveBeenNthCalledWith(1, '0.06');
     expect(logSpy).toHaveBeenNthCalledWith(2, '5.00');
     expect(logSpy).toHaveBeenNthCalledWith(3, '8.70');
@@ -43,7 +43,7 @@ describe('calcCommission', () => {
     expect(logSpy).toHaveBeenNthCalledWith(9, '0.00');
   });
 
-  it('should last called is 0.00', async () => {
+  it('should last called is 0.00', () => {
     expect(logSpy).toHaveBeenLastCalledWith('0.00');
   });
 });

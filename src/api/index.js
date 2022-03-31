@@ -1,7 +1,7 @@
 import { CONFIGS_URL } from '../constants/configs.js';
 import { fetchJSON } from '../utils/http/index.js';
 
-const getConfig = async (configKey) => fetchJSON(CONFIGS_URL[configKey]);
+export const getConfig = async (configKey) => fetchJSON(CONFIGS_URL[configKey]);
 
 export const getConfigs = async () => {
   const configs = {};
